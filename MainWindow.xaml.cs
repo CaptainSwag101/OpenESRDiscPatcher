@@ -44,9 +44,9 @@ namespace OpenESRDiscPatcher
             }
 
 
-            using FileStream inputStream = new FileStream(InputIsoPath.Text, FileMode.Open, FileAccess.Read, FileShare.Read);
-            using CDReader tempCDReader = new CDReader(inputStream, true);
-            using BinaryReader tempReader = new BinaryReader(inputStream);
+            using FileStream inputStream = new(InputIsoPath.Text, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using CDReader tempCDReader = new(inputStream, false);
+            using BinaryReader tempReader = new(inputStream);
 
             // Check if the ISO has a UDF descriptor
             bool isUDF = false;
@@ -81,19 +81,19 @@ namespace OpenESRDiscPatcher
 
             // First, copy the input ISO to the output file
             isBusy = true;
-            ProgressDialog progressDlg = new ProgressDialog();
+            ProgressDialog progressDlg = new();
             progressDlg.Owner = this;
             progressDlg.Show();
-            using FileStream outputStream = new FileStream(OutputIsoPath.Text, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+            using FileStream outputStream = new(OutputIsoPath.Text, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             inputStream.Seek(0, SeekOrigin.Begin);
             await inputStream.CopyToAsync(outputStream);
             progressDlg.Close();
 
             // Then start processing the output ISO
             outputStream.Seek(0, SeekOrigin.Begin);
-            using CDReader cdReader = new CDReader(outputStream, true);
-            using BinaryReader isoReader = new BinaryReader(outputStream);
-            using BinaryWriter isoWriter = new BinaryWriter(outputStream);
+            using CDReader cdReader = new(outputStream, false);
+            using BinaryReader isoReader = new(outputStream);
+            using BinaryWriter isoWriter = new(outputStream);
 
             // Start the patching process:
             byte[] buffer;
@@ -192,9 +192,9 @@ namespace OpenESRDiscPatcher
                     return;
             }
 
-            using FileStream inputStream = new FileStream(InputIsoPath.Text, FileMode.Open, FileAccess.Read, FileShare.Read);
-            using CDReader tempCDReader = new CDReader(inputStream, true);
-            using BinaryReader tempReader = new BinaryReader(inputStream);
+            using FileStream inputStream = new(InputIsoPath.Text, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using CDReader tempCDReader = new(inputStream, false);
+            using BinaryReader tempReader = new(inputStream);
 
             // Check if the ISO has a UDF descriptor
             bool isUDF = false;
@@ -229,19 +229,19 @@ namespace OpenESRDiscPatcher
 
             // First, copy the input ISO to the output file
             isBusy = true;
-            ProgressDialog progressDlg = new ProgressDialog();
+            ProgressDialog progressDlg = new();
             progressDlg.Owner = this;
             progressDlg.Show();
-            using FileStream outputStream = new FileStream(OutputIsoPath.Text, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+            using FileStream outputStream = new(OutputIsoPath.Text, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             inputStream.Seek(0, SeekOrigin.Begin);
             await inputStream.CopyToAsync(outputStream);
             progressDlg.Close();
 
             // Then start processing the output ISO
             outputStream.Seek(0, SeekOrigin.Begin);
-            using CDReader cdReader = new CDReader(outputStream, true);
-            using BinaryReader isoReader = new BinaryReader(outputStream);
-            using BinaryWriter isoWriter = new BinaryWriter(outputStream);
+            using CDReader cdReader = new(outputStream, false);
+            using BinaryReader isoReader = new(outputStream);
+            using BinaryWriter isoWriter = new(outputStream);
 
 
             // Start the unpatching process:
@@ -275,7 +275,7 @@ namespace OpenESRDiscPatcher
 
         private void BrowseInputFileButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
+            OpenFileDialog dlg = new();
             dlg.Filter = "ISO disc image files (*.iso)|*.iso|All files (*.*)|*.*";
 
             // Abort if the user canceled the dialog
@@ -289,14 +289,14 @@ namespace OpenESRDiscPatcher
             // If there is nothing in the output file path textbox, populate it with an automatic output file in the same location
             if (string.IsNullOrWhiteSpace(OutputIsoPath.Text))
             {
-                FileInfo temp = new FileInfo(dlg.FileName);
+                FileInfo temp = new(dlg.FileName);
                 OutputIsoPath.Text = temp.FullName.Substring(0, temp.FullName.Length - temp.Extension.Length) + "_patched.iso";
             }
         }
 
         private void BrowseOutputFileButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
+            OpenFileDialog dlg = new();
             dlg.Filter = "ISO disc image files (*.iso)|*.iso|All files (*.*)|*.*";
 
             // Abort if the user canceled the dialog
@@ -316,7 +316,7 @@ namespace OpenESRDiscPatcher
 
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            AboutWindow about = new AboutWindow();
+            AboutWindow about = new();
             about.Owner = this;
             about.ShowDialog();
         }

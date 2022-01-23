@@ -2,7 +2,7 @@
     Open ESR Disc Patcher, a free and open-source tool for patching DVD ISO images
     for playing game backups or homebrew on PS2 with an external ESR loader app.
 
-    Copyright (C) 2020-2021  James Pelster
+    Copyright (C) 2020-2022  James Pelster
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or

@@ -1,19 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Authors>CaptainSwag101</Authors>
     <Product>Open ESR Disc Patcher</Product>
-    <Copyright>2021  James Pelster</Copyright>
-    <RepositoryUrl>https://github.com/jpmac26/OpenESRDiscPatcher</RepositoryUrl>
+    <Copyright>2020-2022  James Pelster</Copyright>
+    <RepositoryUrl>https://github.com/CaptainSwag101/OpenESRDiscPatcher</RepositoryUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DiscUtils.Iso9660" Version="0.16.0-alpha0038" />
+    <PackageReference Include="DiscUtils.Iso9660" Version="0.16.13" />
   </ItemGroup>
 
   <ItemGroup>
